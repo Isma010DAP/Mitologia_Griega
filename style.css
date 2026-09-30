@@ -1,0 +1,319 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: #11100e;
+    color: #eee8dc;
+}
+
+
+/* NAVEGACIÓN */
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(10, 9, 8, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+nav {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px 30px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 20px;
+    letter-spacing: 4px;
+}
+
+.menu {
+    display: flex;
+    gap: 25px;
+}
+
+.menu a {
+    color: #eee8dc;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.menu a:hover {
+    color: #d8ad55;
+}
+
+
+/* PORTADA */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    position: relative;
+
+    background:
+        radial-gradient(circle at center, #403622 0%, #15130f 45%, #080807 100%);
+}
+
+.hero-content {
+    max-width: 800px;
+    padding: 30px;
+}
+
+.subtitle,
+.section-label {
+    color: #d8ad55;
+    letter-spacing: 5px;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(60px, 10vw, 130px);
+    line-height: 0.9;
+    letter-spacing: 8px;
+}
+
+.hero h1 span {
+    color: #d8ad55;
+}
+
+.description {
+    max-width: 600px;
+    margin: 35px auto;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #c9c2b6;
+}
+
+button {
+    border: 1px solid #d8ad55;
+    background: transparent;
+    color: #d8ad55;
+
+    padding: 15px 30px;
+
+    font-family: inherit;
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #d8ad55;
+    color: #111;
+}
+
+.hero-symbol {
+    position: absolute;
+    font-size: 300px;
+    opacity: 0.035;
+    pointer-events: none;
+}
+
+
+/* SECCIONES */
+
+.section {
+    max-width: 1200px;
+    margin: auto;
+    padding: 120px 30px;
+}
+
+.section h2,
+.quiz-section h2 {
+    font-size: 55px;
+    margin-bottom: 25px;
+}
+
+.section-description {
+    max-width: 650px;
+    color: #aaa39a;
+    line-height: 1.7;
+}
+
+
+/* DIoses */
+
+.cards {
+    margin-top: 60px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.card {
+    padding: 40px;
+
+    min-height: 250px;
+
+    border: 1px solid #38342e;
+
+    background: linear-gradient(
+        145deg,
+        #211e19,
+        #12110f
+    );
+
+    transition: 0.4s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: #d8ad55;
+}
+
+.card-icon {
+    font-size: 50px;
+    margin-bottom: 25px;
+}
+
+.card h3 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.card p {
+    color: #aaa39a;
+    line-height: 1.6;
+}
+
+
+/* MITOS */
+
+.dark-section {
+    max-width: none;
+    padding-left: max(30px, calc((100% - 1200px) / 2));
+    padding-right: max(30px, calc((100% - 1200px) / 2));
+
+    background: #0b0a09;
+}
+
+.myth-grid {
+    margin-top: 60px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.myth {
+    padding: 35px;
+    border-left: 2px solid #d8ad55;
+}
+
+.myth h3 {
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.myth p {
+    color: #aaa39a;
+    line-height: 1.7;
+}
+
+
+/* HÉROES */
+
+.hero-list {
+    margin-top: 50px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.hero-list div {
+    padding: 25px;
+
+    background: #1b1916;
+    border: 1px solid #34302b;
+
+    text-align: center;
+
+    transition: 0.3s;
+}
+
+.hero-list div:hover {
+    transform: scale(1.04);
+    border-color: #d8ad55;
+}
+
+
+/* QUIZ */
+
+.quiz-section {
+    text-align: center;
+
+    padding: 150px 30px;
+
+    background:
+        radial-gradient(circle, #403622, #0c0b09 65%);
+}
+
+.quiz-section p {
+    color: #aaa39a;
+    margin-bottom: 30px;
+}
+
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    padding: 50px 20px;
+
+    border-top: 1px solid #292622;
+
+    color: #777;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+
+/* MÓVIL */
+
+@media (max-width: 800px) {
+
+    .menu {
+        display: none;
+    }
+
+    .cards,
+    .myth-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .section h2,
+    .quiz-section h2 {
+        font-size: 40px;
+    }
+}
