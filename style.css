@@ -316,4 +316,284 @@ footer {
     .quiz-section h2 {
         font-size: 40px;
     }
+}<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitología Griega</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <div class="logo">ΜΥΘΟΛΟΓΙΑ</div>
+
+        <div class="menu">
+            <a href="#inicio">Inicio</a>
+            <a href="#dioses">Dioses</a>
+            <a href="#mitos">Mitos</a>
+            <a href="#heroes">Héroes</a>
+            <a href="#quiz">Test</a>
+        </div>
+    </nav>
+</header>
+
+
+<!-- INICIO -->
+<section id="inicio" class="hero">
+
+    <div class="hero-content">
+
+        <h1>MITOLOGÍA<br><span>GRIEGA</span></h1>
+
+        <p class="description">
+            Dioses, héroes, monstruos y mitos que marcaron
+            a una de las culturas más influyentes desde la Antigüedad.
+        </p>
+
+        <button onclick="explorar()">EXPLORAR EL OLIMPO</button>
+
+    </div>
+
+</section>
+
+
+<!-- DIOSES -->
+<section id="dioses" class="section">
+
+    <h2>Los dioses del Olimpo</h2>
+
+    <p class="section-description">
+        Los dioses del Olimpo eran las principales divinidades de la
+        mitología griega que vivían en el monte Olimpo y gobernaban
+        distintos aspectos del mundo.
+    </p>
+
+
+<div class="card" onclick="mostrarDios('zeus')">
+    <h3>Zeus</h3>
+    <p>
+        Dios del cielo y del trueno, además de ser considerado
+        el principal dios del Olimpo.
+    </p>
+    <span>VER MÁS →</span>
+</div>
+
+
+<div class="card" onclick="mostrarDios('poseidon')">
+    <h3>Poseidón</h3>
+    <p>
+        Dios de los mares, los terremotos y los caballos.
+    </p>
+    <span>VER MÁS →</span>
+</div>
+
+
+<div class="card" onclick="mostrarDios('atenea')">
+    <h3>Atenea</h3>
+    <p>
+        Diosa de la sabiduría, la estrategia y la guerra justa.
+    </p>
+    <span>VER MÁS →</span>
+</div>
+
+    </div>
+
+</section>
+
+
+<!-- MITOS -->
+<section id="mitos" class="section dark-section">
+
+    <h2>Los grandes mitos</h2>
+
+
+    <div class="myths">
+
+        <div class="myth">
+
+            <h3>Perseo y Medusa</h3>
+
+            <p>
+                Cuenta la historia de un héroe griego que cumple una misión
+                que hasta ese entonces es imposible: acabar con un monstruo
+                capaz de convertir en piedra a cualquiera que le mire.
+            </p>
+
+        </div>
+
+
+        <div class="myth">
+
+            <h3>Ícaro</h3>
+
+            <p>
+                Trata sobre la historia de un joven que muere tras
+                desobedecer los consejos de su padre e intentar volar
+                hacia el sol.
+            </p>
+
+        </div>
+
+
+        <div class="myth">
+
+            <h3>Orfeo y Eurídice</h3>
+
+            <p>
+                Trata sobre una historia de amor de un gran músico que
+                intenta rescatar a su esposa del inframundo.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- HÉROES -->
+<section id="heroes" class="section">
+
+    <h2>Héroes y monstruos</h2>
+
+
+    <div class="hero-list">
+
+        <div>
+            <h3>Héroes</h3>
+            <p>Perseo · Heracles · Teseo · Aquiles</p>
+        </div>
+
+
+        <div>
+            <h3>Monstruos</h3>
+            <p>Medusa · Minotauro · Cíclope · Hidra</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TEST -->
+<section id="quiz" class="quiz-section">
+
+    <p class="section-label">PON A PRUEBA TUS CONOCIMIENTOS</p>
+
+    <h2>Desafío del Olimpo</h2>
+
+    <p>
+        Pon a prueba todo lo que has aprendido.
+    </p>
+
+    <button onclick="comenzarQuiz()">
+        COMENZAR LA PRUEBA
+    </button>
+
+</section>
+
+
+<footer>
+    <p>Mitología Griega · Literatura Universal</p>
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
+/* Ventana de información de los personajes */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: #171717;
+    color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .modal-content {
+        padding: 25px 18px;
+    }
+}
+
+/* Ventana de información de los personajes */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: #171717;
+    color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .modal-content {
+        padding: 25px 18px;
+    }
 }
