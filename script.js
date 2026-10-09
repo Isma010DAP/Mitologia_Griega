@@ -152,9 +152,15 @@ document.addEventListener("click", function(event) {
 });
 
 
-// TEST DEL OLIMPO
+
+ // TEST DEL OLIMPO
+let preguntasQuiz = [];
+let indicePreguntaQuiz = 0;
+let puntuacionQuiz = 0;
+let respuestaElegida = false;
+
 function comenzarQuiz() {
-    const preguntas = [
+    preguntasQuiz = [
         {
             pregunta: "¿Quién era el rey de los dioses?",
             opciones: ["Poseidón", "Zeus", "Hades", "Ares"],
@@ -212,46 +218,129 @@ function comenzarQuiz() {
         }
     ];
 
-    let puntuacion = 0;
+    indicePreguntaQuiz = 0;
+    puntuacionQuiz = 0;
+    respuestaElegida = false;
 
-    for (let i = 0; i < preguntas.length; i++) {
-        const p = preguntas[i];
+    document.getElementById("quiz-inicio").style.display = "none";
+    document.getElementById("quiz-resultado").style.display = "none";
+    document.getElementById("quiz-juego").style.display = "block";
 
-        const respuesta = prompt(
-            "PREGUNTA " + (i + 1) + " DE " + preguntas.length +
-            "\n\n" + p.pregunta +
-            "\n\n1. " + p.opciones[0] +
-            "\n2. " + p.opciones[1] +
-            "\n3. " + p.opciones[2] +
-            "\n4. " + p.opciones[3] +
-            "\n\nEscribe el número de tu respuesta. Pulsa Cancelar para salir."
-        );
+    mostrarPreguntaQuiz();
+}
 
-        if (respuesta === null) {
-            return;
+function mostrarPreguntaQuiz() {
+    const p = preguntasQuiz[indicePreguntaQuiz];
+
+    respuestaElegida = false;
+
+    document.getElementById("quiz-progreso").textContent =
+        "PREGUNTA " + (indicePreguntaQuiz + 1) + " DE " + preguntasQuiz.length;
+
+    document.getElementById("quiz-puntos").textContent =
+        "ACIERTOS: " + puntuacionQuiz;
+
+    document.getElementById("quiz-barra-progreso").style.width =
+        (indicePreguntaQuiz / preguntasQuiz.length * 100) + "%";
+
+    document.getElementById("quiz-pregunta").textContent = p.pregunta;
+    document.getElementById("quiz-mensaje").textContent = "";
+    document.getElementById("quiz-siguiente").style.display = "none";
+
+    const contenedor = document.getElementById("quiz-opciones");
+    contenedor.innerHTML = "";
+
+    p.opciones.forEach(function(opcion, i) {
+        const boton = document.createElement("button");
+
+        boton.className = "quiz-opcion";
+        boton.textContent = String.fromCharCode(65 + i) + ". " + opcion;
+        boton.onclick = function() {
+            responderPreguntaQuiz(i, boton);
+        };
+
+        contenedor.appendChild(boton);
+    });
+}
+
+function responderPreguntaQuiz(indice, botonElegido) {
+    if (respuestaElegida) return;
+
+    respuestaElegida = true;
+
+    const p = preguntasQuiz[indicePreguntaQuiz];
+    const botones = document.querySelectorAll(".quiz-opcion");
+    const mensaje = document.getElementById("quiz-mensaje");
+
+    botones.forEach(function(boton, i) {
+        boton.disabled = true;
+
+        if (i === p.correcta) {
+            boton.classList.add("respuesta-correcta");
         }
+    });
 
-        if (respuesta.trim() !== "" &&
-            Number(respuesta) - 1 === p.correcta) {
-            puntuacion++;
-        }
+    if (indice === p.correcta) {
+        puntuacionQuiz++;
+        mensaje.textContent = "¡Correcto! Has acertado.";
+        mensaje.className = "quiz-correcto";
+    } else {
+        botonElegido.classList.add("respuesta-incorrecta");
+        mensaje.textContent =
+            "No es correcto. La respuesta era: " + p.opciones[p.correcta];
+        mensaje.className = "quiz-incorrecto";
     }
 
+    document.getElementById("quiz-puntos").textContent =
+        "ACIERTOS: " + puntuacionQuiz;
+
+    document.getElementById("quiz-siguiente").style.display = "inline-block";
+
+    if (indicePreguntaQuiz === preguntasQuiz.length - 1) {
+        document.getElementById("quiz-siguiente").textContent =
+            "VER RESULTADO FINAL";
+    }
+}
+
+function siguientePregunta() {
+    if (!respuestaElegida) return;
+
+    indicePreguntaQuiz++;
+
+    if (indicePreguntaQuiz >= preguntasQuiz.length) {
+        mostrarResultadoQuiz();
+    } else {
+        document.getElementById("quiz-siguiente").textContent =
+            "SIGUIENTE PREGUNTA →";
+        mostrarPreguntaQuiz();
+    }
+}
+
+function mostrarResultadoQuiz() {
+    document.getElementById("quiz-juego").style.display = "none";
+    document.getElementById("quiz-resultado").style.display = "block";
+
+    document.getElementById("quiz-barra-progreso").style.width = "100%";
+
+    let rango;
     let mensaje;
 
-    if (puntuacion === 10) {
-        mensaje = "¡Perfecto! Conoces muy bien la mitología griega.";
-    } else if (puntuacion >= 7) {
-        mensaje = "¡Muy bien! Has aprendido bastante.";
-    } else if (puntuacion >= 5) {
-        mensaje = "No está mal, pero puedes repasar algunos personajes.";
+    if (puntuacionQuiz === 10) {
+        rango = "Dios del Olimpo";
+        mensaje = "¡Perfecto! Dominas la mitología griega.";
+    } else if (puntuacionQuiz >= 7) {
+        rango = "Semidiós";
+        mensaje = "¡Muy bien! Conoces muchos mitos y personajes.";
+    } else if (puntuacionQuiz >= 5) {
+        rango = "Héroe del Olimpo";
+        mensaje = "Buen trabajo. Con un repaso puedes mejorar.";
     } else {
-        mensaje = "Te toca volver a explorar el Olimpo y probar otra vez.";
+        rango = "Mortal";
+        mensaje = "El Olimpo te espera. Repasa los personajes y vuelve a intentarlo.";
     }
 
-    alert(
-        "RESULTADO DEL OLIMPO\n\n" +
-        "Has acertado " + puntuacion + " de 10 preguntas.\n\n" +
-        mensaje
-    );
+    document.getElementById("quiz-rango").textContent = rango;
+    document.getElementById("quiz-puntuacion-final").textContent =
+        "Has acertado " + puntuacionQuiz + " de " + preguntasQuiz.length + " preguntas.";
+    document.getElementById("quiz-mensaje-final").textContent = mensaje;
 }
