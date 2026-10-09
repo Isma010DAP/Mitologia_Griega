@@ -102,6 +102,7 @@ const personajes = {
 
 
 // ABRIR LA FICHA DE UN PERSONAJE
+
 function mostrarPersonaje(id) {
     const personaje = personajes[id];
 
@@ -109,11 +110,23 @@ function mostrarPersonaje(id) {
         return;
     }
 
+    const partes = personaje.texto.split(/REFERENCIA CULTURAL/i);
+
     document.getElementById("personaje-titulo").textContent =
         personaje.nombre;
 
     document.getElementById("personaje-texto").textContent =
-        personaje.texto;
+        partes[0].trim();
+
+    const referencia = document.getElementById("personaje-referencia");
+    const bloqueReferencia = document.querySelector(".referencia-cultural");
+
+    if (partes.length > 1 && partes[1].trim()) {
+        referencia.textContent = partes.slice(1).join(" ").trim();
+        bloqueReferencia.style.display = "block";
+    } else {
+        bloqueReferencia.style.display = "none";
+    }
 
     document.getElementById("personaje-modal").style.display = "flex";
 
