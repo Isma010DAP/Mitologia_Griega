@@ -618,3 +618,105 @@ footer {
         font-size: 0.72rem;
     }
 }
+
+/* ===== EFECTOS DEL DESAFÍO DEL OLIMPO ===== */
+
+/* Entrada suave de las tarjetas */
+.quiz-panel {
+    animation: entradaOlimpo 0.5s ease both;
+}
+
+@keyframes entradaOlimpo {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Respuesta correcta: brillo verde */
+.quiz-opciones button.correcta {
+    animation: aciertoOlimpo 0.45s ease;
+    box-shadow: 0 0 18px rgba(85, 189, 128, 0.25);
+}
+
+@keyframes aciertoOlimpo {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.04);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Respuesta incorrecta: pequeño movimiento */
+.quiz-opciones button.incorrecta {
+    animation: falloOlimpo 0.35s ease;
+    box-shadow: 0 0 18px rgba(220, 119, 119, 0.2);
+}
+
+@keyframes falloOlimpo {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+/* Movimiento suave de la barra de progreso */
+#quiz-barra-progreso {
+    box-shadow: 0 0 12px rgba(241, 212, 154, 0.3);
+}
+
+/* Respetar a quien prefiera menos animaciones */
+@media (prefers-reduced-motion: reduce) {
+    .quiz-panel,
+    .quiz-opciones button.correcta,
+    .quiz-opciones button.incorrecta {
+        animation: none;
+    }
+}
+
+/* Efectos para las clases reales del test */
+.quiz-opcion.respuesta-correcta {
+    background: #193b2b !important;
+    border: 1px solid #55bd80 !important;
+    color: #a7f0c2 !important;
+    animation: aciertoOlimpo 0.45s ease;
+    box-shadow: 0 0 18px rgba(85, 189, 128, 0.4);
+}
+
+.quiz-opcion.respuesta-incorrecta {
+    background: #482323 !important;
+    border: 1px solid #dc7777 !important;
+    color: #ffc0c0 !important;
+    animation: falloOlimpo 0.35s ease;
+    box-shadow: 0 0 18px rgba(220, 119, 119, 0.35);
+}
+
+@keyframes aciertoOlimpo {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+    100% { transform: scale(1); }
+}
+
+@keyframes falloOlimpo {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+.quiz-opcion.respuesta-correcta {
+    background: lime !important;
+    color: black !important;
+    border: 4px solid red !important;
+}

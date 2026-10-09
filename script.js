@@ -229,36 +229,6 @@ function comenzarQuiz() {
     mostrarPreguntaQuiz();
 }
 
-function mostrarPreguntaQuiz() {
-    const p = preguntasQuiz[indicePreguntaQuiz];
-
-    respuestaElegida = false;
-
-    document.getElementById("quiz-progreso").textContent =
-        "PREGUNTA " + (indicePreguntaQuiz + 1) + " DE " + preguntasQuiz.length;
-
-    document.getElementById("quiz-puntos").textContent =
-        "ACIERTOS: " + puntuacionQuiz;
-
-    document.getElementById("quiz-barra-progreso").style.width =
-        (indicePreguntaQuiz / preguntasQuiz.length * 100) + "%";
-
-    document.getElementById("quiz-pregunta").textContent = p.pregunta;
-    document.getElementById("quiz-mensaje").textContent = "";
-    document.getElementById("quiz-siguiente").style.display = "none";
-
-    const contenedor = document.getElementById("quiz-opciones");
-    contenedor.innerHTML = "";
-
-    p.opciones.forEach(function(opcion, i) {
-        const boton = document.createElement("button");
-
-        boton.className = "quiz-opcion";
-        boton.textContent = String.fromCharCode(65 + i) + ". " + opcion;
-        boton.onclick = function() {
-            responderPreguntaQuiz(i, boton);
-        };
-
         contenedor.appendChild(boton);
     });
 }
@@ -343,4 +313,34 @@ function mostrarResultadoQuiz() {
     document.getElementById("quiz-puntuacion-final").textContent =
         "Has acertado " + puntuacionQuiz + " de " + preguntasQuiz.length + " preguntas.";
     document.getElementById("quiz-mensaje-final").textContent = mensaje;
+}
+
+/* ===== ANIMACIONES CORREGIDAS DEL TEST ===== */
+
+.quiz-opcion.respuesta-correcta {
+    animation: aciertoOlimpo 0.45s ease;
+    background: #193b2b;
+    border-color: #55bd80;
+    color: #a7f0c2;
+    box-shadow: 0 0 18px rgba(85, 189, 128, 0.35);
+}
+
+.quiz-opcion.respuesta-incorrecta {
+    animation: falloOlimpo 0.35s ease;
+    background: #482323;
+    border-color: #dc7777;
+    color: #ffc0c0;
+    box-shadow: 0 0 18px rgba(220, 119, 119, 0.3);
+}
+
+@keyframes aciertoOlimpo {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+    100% { transform: scale(1); }
+}
+
+@keyframes falloOlimpo {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
 }
