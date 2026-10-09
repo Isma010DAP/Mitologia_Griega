@@ -597,3 +597,49 @@ footer {
         padding: 25px 18px;
     }
 }
+
+/* Apartado de referencia cultural */
+.referencia-cultural {
+    margin-top: 25px;
+    padding: 18px;
+    background: rgba(212, 175, 55, 0.08);
+    border-left: 3px solid #d4af37;
+    border-radius: 8px;
+}
+
+.referencia-cultural h3 {
+    color: #d4af37;
+    font-size: 1.1rem;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.referencia-cultural p {
+    margin: 0;
+    line-height: 1.8;
+    color: #e0e0e0;
+}
+
+/* Apartado de referencia cultural */
+.referencia-cultural {
+    margin-top: 25px;
+    padding: 18px;
+    background: rgba(212, 175, 55, 0.08);
+    border-left: 3px solid #d4af37;
+    border-radius: 8px;
+}
+
+.referencia-cultural h3 {
+    color: #d4af37;
+    font-size: 1.1rem;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.referencia-cultural p {
+    margin: 0;
+    line-height: 1.8;
+    color: #e0e0e0;
+}
